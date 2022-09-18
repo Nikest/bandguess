@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "setup": "echo 'CLIENT INSTALLING: START' && npm install && echo 'CLIENT INSTALLING: SUCCESS'",
-    "develop": "webpack-cli serve --mode=development --env development --open --hot"
+    "develop": "webpack-cli serve --mode=development --env development --open --hot",
+    "build": "webpack --mode=production --env production --progress"
   },
   "repository": {
     "type": "git",

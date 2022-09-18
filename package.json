@@ -2,8 +2,6 @@
   "name": "guesstheartist",
   "version": "1.0.0",
   "scripts": {
-    "in": "npm --prefix ./client/ run setup"
-  },
-  "dependencies": {
+    "launch": "npm --prefix ./client/ run build && npm --prefix ./server/ run server"
   }
 }
