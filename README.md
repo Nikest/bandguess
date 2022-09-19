@@ -22,7 +22,7 @@ After `stage 3/3` you can open app on http://localhost:3007/
 
 ### How it works?
 
-1. When the server starts it loads artists and albums data from iTunes; Artists' names locate in file `server/artists/artists.json`; First it verifies whether are artists name valid and saves valid data to cloud database (Mongo Atlas);
+1. When the server starts it loads artists and albums data from iTunes; Artists' names locate in file `server/artists/artists.json`; First it verifies whether are artists name valid and saves valid data to cloud database (Mongo Atlas); I think it's a good way to have one endpoint for client app.
 
 2. Next it loads by iTunes API albums of each artist and saving data to the database;
 

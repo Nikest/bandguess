@@ -24,7 +24,7 @@ export const Layout = () => {
     <>
       <h1 className={c('title')}>Guess the <span className={c('mark')}>Artist</span></h1>
       <div className={c('buttons-wrap')}>
-        <Link to={routes.HOME}><Button small onClick={onNewGame}>Home</Button></Link>
+        <Link to={routes.HOME}><Button small>Home</Button></Link>
         <Link to={routes.GAME}><Button small onClick={onNewGame}>New Game</Button></Link>
         <Link to={routes.RESULTS}><Button small>Results</Button></Link>
       </div>

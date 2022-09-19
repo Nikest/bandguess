@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { sl } from '../../utils';
 import { Button } from '../../Components';
@@ -11,7 +11,6 @@ const c = sl(() => require('./Home.less'));
 
 export const Home = () => {
   const savedGameExist = local.getFromStorage();
-
   const dispatch = useDispatch();
 
   const onNewGame = () => {
@@ -22,7 +21,6 @@ export const Home = () => {
     <section className={c('container')}>
       <aside className={c('title-wrap')}>
         <h1 className={c('title')}>Guess the <br/><span className={c('mark')}>Artist</span></h1>
-
       </aside>
 
       <aside className={c('button-wrap')}>

@@ -90,6 +90,7 @@ const artistsReducer = (state: IArtistsState = initialArtistsState, action: IArt
 const gameReducer = (state: IGameState = initialGameState, action: IGameAction) => {
   switch (action.type) {
     case types.NEW_GAME_REQ: {
+      local.deleteFromStorage();
       return newGameStoreCreator(true);
     }
 
