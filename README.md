@@ -6,7 +6,7 @@ For automatically install all dependencies and launch the server use command fro
 
 After `stage 3/3` you can open app on http://localhost:3007/
 
-###How it works?
+### How it works?
 
 1. When the server starts it loads artists and albums data from iTunes; Artists' names locate in file `server/artists/artists.json`; First it verifies whether are artists name valid and saves valid data to cloud database (Mongo Atlas);
 
