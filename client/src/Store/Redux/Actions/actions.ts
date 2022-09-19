@@ -1,6 +1,6 @@
 import { createAction } from 'redux-actions';
 import * as types from './types';
-import { IArtist, IGameState } from '../interfaces';
+import { IArtist, IGameState, IPlayerHistoryState } from '../interfaces';
 import { IPlayer } from '../../../../../server/types';
 
 export const getArtistsAction = createAction(types.GET_ARTISTS);
@@ -18,3 +18,6 @@ export const savePlayerAction = createAction(types.SAVE_PLAYER, (payload: IPlaye
 export const savePlayerDoneAction = createAction(types.SAVE_PLAYER_DONE);
 export const getPlayersAction = createAction(types.GET_PLAYERS);
 export const putPlayersAction = createAction(types.PUT_PLAYERS, (payload: IPlayer[]) => payload);
+
+export const getPlayerHistoryAction = createAction(types.GET_HISTORY, (payload: Partial<IPlayer>) => payload);
+export const putPlayerHistoryAction = createAction(types.PUT_HISTORY, (payload: Partial<IPlayerHistoryState>) => payload);

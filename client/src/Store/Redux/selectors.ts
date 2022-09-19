@@ -13,3 +13,4 @@ export const isLoadingSelector = ({ gameReducer }: ICombineStore): boolean => ga
 export const getPlayersSelector = ({ playersReducer }: ICombineStore) => playersReducer.players;
 export const IsPlayersLoadingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isLoading;
 export const IsPlayerSavingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isSaving;
+export const getPlayerHistorySelector = ({ playerHistoryReducer }: ICombineStore) => playerHistoryReducer;

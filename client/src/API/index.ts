@@ -17,3 +17,7 @@ export async function fetchSavePlayer(params: IPlayer) {
 export async function fetchPlayers() {
   return axios.get('/player');
 }
+
+export async function fetchPlayerHistory(params: IPlayer) {
+  return axios.get('/player/history', { params });
+}

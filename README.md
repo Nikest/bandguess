@@ -34,12 +34,11 @@ After `stage 3/3` you can open app on http://localhost:3007/
 3. After a request from the client for a new game it chooses artists and their albums in a procedural way, depending on a random seed from the client. Of course, I can do it randomly, but I think procedural is interesting
    because if we scale the game more than 5 rounds and want to know which albums the player saw and guessed we could generate all "pseudo-random" numbers. But, actually, it will not be working if we change the list of artists. :)
 4. After each artist selection by the player the application state saves to browser local storage. If the page refreshes all data loads to redux store from browser storage;
-
+5. On the Results page if you click on player block you can see the history. All artists and albums are what player guessed. But this information not saving anywhere, just made because of the procedural way and random seed number of the player;
 ***
 
 ### What will be good to realize?
 
 1. Error handling and error alerts messages;
-2. Showing history of each players in results page. Which artist guessed by player;
-3. Create .env with settings for artists, album loading limits, etc.;
+3. Create `.env` with settings for artists, album loading limits, etc.;
 4. Getting data to Results page by WebSocket;

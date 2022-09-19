@@ -1,0 +1,47 @@
+.container {
+  display: grid;
+  grid-template-columns: 100%;
+  grid-row-gap: 5px;
+  width: 100%;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+.album {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 50px auto;
+  grid-row-gap: 10px;
+  border: 1px solid @borderColorAdditional;
+  border-radius: 5px;
+  grid-column-gap: 15px;
+  background: #292929;
+  overflow: hidden;
+}
+
+.illustration {
+  width: 50px;
+  height: 50px;
+  background-size: cover;
+}
+
+.description {
+  color: @textColorMark;
+  .textFont(14px, 100);
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-right: 15px;
+}
+
+.artist-name {
+  .textFont(14px, 900);
+  margin-bottom: 5px;
+}
+
+.title {
+  .textFont(13px, 100);
+  margin-bottom: 5px;
+  text-align: center;
+  color: @textColorMain;
+}

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../Store/Redux/selectors';
 import * as actions from '../../Store/Redux/Actions/actions';
+import { AlbumsHistory } from '../../Components';
 import { sl } from  '../../utils';
 
 const c = sl(() => require('./Results.less'));
@@ -11,10 +12,13 @@ export const Results = () => {
   const isLoading = useSelector(selectors.IsPlayersLoadingSelector);
   const isSaving = useSelector(selectors.IsPlayerSavingSelector);
   const players = useSelector(selectors.getPlayersSelector);
+  const history = useSelector(selectors.getPlayerHistorySelector);
 
   useEffect(() => {
     !isSaving && dispatch(actions.getPlayersAction());
   }, [dispatch, isSaving]);
+
+  const onLoadHistory = (player) => () => dispatch(actions.getPlayerHistoryAction(player))
 
   return (isLoading || isSaving) ? (
     <section className={c('container-loading')}>
@@ -29,13 +33,18 @@ export const Results = () => {
       <aside className={c('table-wrap')}>
         {
           players.map((player) => (
-            <p className={c('player-wrap')} key={player.playerId}>
-              <span className={c('player-name')}>{player.name}</span>
-              <span className={c('player-score')}>
+            <div className={c('wrap')} key={player.playerId}>
+              <p className={c('player-wrap')} onClick={onLoadHistory(player)}>
+                <span className={c('player-name')}>{player.name}</span>
+                <span className={c('player-score')}>
                 <span className={c('descr')}>Score: </span>
-                {player.successfulRounds}
+                  {player.successfulRounds}
               </span>
-            </p>
+              </p>
+              {
+                history.playerId === player.playerId && <AlbumsHistory albums={history.albums} successfulRounds={player.successfulRounds} />
+              }
+            </div>
           ))
         }
       </aside>

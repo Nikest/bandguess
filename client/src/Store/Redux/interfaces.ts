@@ -31,8 +31,14 @@ export interface IArtistsState {
   isLoading: boolean;
 }
 
-export interface IPlayersStore {
+export interface IPlayersState {
   isLoading: boolean;
   isSaving: boolean;
   players: IPlayerData[];
+}
+
+export interface IPlayerHistoryState {
+  isLoading: boolean;
+  albums: ICurrentAlbum[];
+  playerId: string;
 }

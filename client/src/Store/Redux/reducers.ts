@@ -4,7 +4,8 @@ import {
   IArtistsState,
   IArtist,
   IPlayerData,
-  IPlayersStore,
+  IPlayersState,
+  IPlayerHistoryState,
 } from './interfaces';
 import * as types from './Actions/types';
 import * as gameCommands from '../../GameProcess';
@@ -25,10 +26,16 @@ export interface IPlayersAction {
   payload?: IPlayerData[];
 }
 
+export interface IPlayerHistoryAction {
+  type: string;
+  payload?: Partial<IPlayerHistoryState>;
+}
+
 export interface ICombineStore {
   artistsReducer: IArtistsState;
   gameReducer: IGameState;
-  playersReducer: IPlayersStore;
+  playersReducer: IPlayersState;
+  playerHistoryReducer: IPlayerHistoryState;
 }
 
 const localData = local.getFromStorage();
@@ -59,10 +66,16 @@ const initialArtistsState: IArtistsState = {
   isLoading: false,
 }
 
-const initialPlayersStore: IPlayersStore = {
+const initialPlayersStore: IPlayersState = {
   isLoading: false,
   isSaving: false,
   players: [],
+}
+
+const initialPlayerHistoryState: IPlayerHistoryState = {
+  albums: [],
+  playerId: '',
+  isLoading: false,
 }
 
 const artistsReducer = (state: IArtistsState = initialArtistsState, action: IArtistsAction) => {
@@ -149,7 +162,7 @@ const gameReducer = (state: IGameState = initialGameState, action: IGameAction) 
   }
 }
 
-const playersReducer = (state: IPlayersStore = initialPlayersStore, action: IPlayersAction) => {
+const playersReducer = (state: IPlayersState = initialPlayersStore, action: IPlayersAction) => {
   switch (action.type) {
     case types.SAVE_PLAYER: {
       return {
@@ -188,4 +201,27 @@ const playersReducer = (state: IPlayersStore = initialPlayersStore, action: IPla
   }
 }
 
-export const rootReducer = combineReducers({ gameReducer, artistsReducer, playersReducer });
+const playerHistoryReducer = (state: IPlayerHistoryState = initialPlayerHistoryState, action: IPlayerHistoryAction) => {
+  switch (action.type) {
+    case types.GET_HISTORY: {
+      return {
+        ...state,
+        isLoading: true,
+      }
+    }
+
+    case types.PUT_HISTORY: {
+      return {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+      }
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+export const rootReducer = combineReducers({ gameReducer, artistsReducer, playersReducer, playerHistoryReducer });

@@ -11,3 +11,5 @@ export const SAVE_PLAYER_DONE = "SAVE_PLAYER_DONE";
 export const GAME_END = "GAME_END";
 export const GET_PLAYERS = "GET_PLAYERS";
 export const PUT_PLAYERS = "PUT_PLAYERS";
+export const GET_HISTORY = "GET_HISTORY";
+export const PUT_HISTORY = "PUT_HISTORY";
