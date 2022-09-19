@@ -61,6 +61,7 @@ const initialArtistsState: IArtistsState = {
 
 const initialPlayersStore: IPlayersStore = {
   isLoading: false,
+  isSaving: false,
   players: [],
 }
 
@@ -147,6 +148,22 @@ const gameReducer = (state: IGameState = initialGameState, action: IGameAction) 
 
 const playersReducer = (state: IPlayersStore = initialPlayersStore, action: IPlayersAction) => {
   switch (action.type) {
+    case types.SAVE_PLAYER: {
+      return {
+        ...state,
+        isLoading: true,
+        isSaving: true,
+      };
+    }
+
+    case types.SAVE_PLAYER_DONE: {
+      return {
+        ...state,
+        isLoading: false,
+        isSaving: false,
+      };
+    }
+
     case types.GET_PLAYERS: {
       return {
         ...state,

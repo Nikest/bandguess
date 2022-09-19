@@ -11,4 +11,5 @@ export const getGuessedArtistSelector = ({ gameReducer }: ICombineStore): IArtis
 export const getStatusSelector = ({ gameReducer }: ICombineStore): string => gameReducer.status;
 export const isLoadingSelector = ({ gameReducer }: ICombineStore): boolean => gameReducer.isLoading;
 export const getPlayersSelector = ({ playersReducer }: ICombineStore) => playersReducer.players;
-export const getIsPlayersLoadingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isLoading;
+export const IsPlayersLoadingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isLoading;
+export const IsPlayerSavingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isSaving;

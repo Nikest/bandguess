@@ -8,14 +8,15 @@ const c = sl(() => require('./Results.less'));
 
 export const Results = () => {
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectors.getIsPlayersLoadingSelector);
+  const isLoading = useSelector(selectors.IsPlayersLoadingSelector);
+  const isSaving = useSelector(selectors.IsPlayerSavingSelector);
   const players = useSelector(selectors.getPlayersSelector);
 
   useEffect(() => {
-    dispatch(actions.getPlayersAction());
-  }, [dispatch]);
+    !isSaving && dispatch(actions.getPlayersAction());
+  }, [dispatch, isSaving]);
 
-  return isLoading ? (
+  return (isLoading || isSaving) ? (
     <section className={c('container-loading')}>
       <p className={c('loading')}>
         Loading...

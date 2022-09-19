@@ -33,5 +33,6 @@ export interface IArtistsState {
 
 export interface IPlayersStore {
   isLoading: boolean;
+  isSaving: boolean;
   players: IPlayerData[];
 }

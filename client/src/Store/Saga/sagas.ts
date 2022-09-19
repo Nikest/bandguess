@@ -5,6 +5,7 @@ import {
   newGameResponseAction,
   newRoundResponseAction,
   putPlayersAction,
+  savePlayerDoneAction,
 } from '../Redux/Actions/actions';
 import { generateNewGame } from '../../GameProcess';
 import * as api from '../../API';
@@ -44,6 +45,8 @@ function* savePlayerSaga(params) {
   const { payload } = params;
 
   yield call(api.fetchSavePlayer, payload);
+
+  yield put(savePlayerDoneAction());
 }
 
 function* getPlayersSaga() {

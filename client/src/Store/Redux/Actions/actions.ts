@@ -15,5 +15,6 @@ export const newRoundResponseAction = createAction(types.NEW_ROUND_RES, (payload
 export const gameEndAction = createAction(types.GAME_END);
 
 export const savePlayerAction = createAction(types.SAVE_PLAYER, (payload: IPlayer) => payload);
+export const savePlayerDoneAction = createAction(types.SAVE_PLAYER_DONE);
 export const getPlayersAction = createAction(types.GET_PLAYERS);
 export const putPlayersAction = createAction(types.PUT_PLAYERS, (payload: IPlayer[]) => payload);
