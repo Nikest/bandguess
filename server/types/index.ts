@@ -26,7 +26,9 @@ export interface IiTunesAlbumAxiosRes {
 
 export interface IAlbum extends IItunesAlbumData {}
 
-export interface IArtist extends IItunesArtistData {}
+export interface IArtist extends IItunesArtistData {
+  number: number;
+}
 
 export interface IPlayer {
   name: string;

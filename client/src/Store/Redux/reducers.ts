@@ -1,47 +1,55 @@
-import { IState } from './interfaces';
+import { combineReducers } from 'redux';
+import { IGameState, IArtistsState, IArtist } from './interfaces';
 import * as types from './Actions/types';
 import * as gameCommands from '../../GameProcess';
 import * as local from '../LocalStorage';
+import {NEW_ROUND_RES} from "./Actions/types";
 
-export interface IAction {
+export interface IGameAction {
   type: string;
-  payload?: IState;
+  payload?: IGameState;
+}
+
+export interface IArtistsAction {
+  type: string;
+  payload?: IArtist[];
+}
+
+export interface ICombineStore {
+  artistsReducer: IArtistsState;
+  gameReducer: IGameState;
 }
 
 const localData = local.getFromStorage();
 
-const newGameStore = (artists): IState => {
+const newGameStoreCreator = (loading = false): IGameState => {
   return {
-    isLoading: false,
+    isLoading: loading,
     playerId: '',
     randomSeed: 0,
     status: 'inProgress',
     round: 0,
-    artists: artists,
     currentAlbum: {
       artistName: '',
       collectionName: '',
       artistId: 0,
       artworkUrl100: '',
     },
-    guessedArtist: '',
+    guessedArtist: null,
     wrongSelected: [],
     tries: 3,
   };
 }
 
-const initialState: IState = localData ? localData : newGameStore([]);
+const initialGameState: IGameState = localData ? localData : newGameStoreCreator();
 
-export const rootReducer = (state: IState = initialState, action: IAction) => {
-  console.log(action);
+const initialArtistsState: IArtistsState = {
+  artists: [],
+  isLoading: false,
+}
+
+const artistsReducer = (state: IArtistsState = initialArtistsState, action: IArtistsAction) => {
   switch (action.type) {
-
-    case types.NEW_GAME: {
-      return {
-        ...newGameStore(state.artists),
-      };
-    }
-
     case types.GET_ARTISTS: {
       return {
         ...state,
@@ -57,13 +65,33 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
       };
     }
 
+    default: {
+      return state;
+    }
+  }
+}
+
+const gameReducer = (state: IGameState = initialGameState, action: IGameAction) => {
+  switch (action.type) {
+    case types.NEW_GAME_REQ: {
+      return newGameStoreCreator(true);
+    }
+
+    case types.NEW_GAME_RES: {
+      return {
+        ...state,
+        isLoading: false,
+        ...action.payload,
+      };
+    }
+
     case types.SELECT_ARTIST: {
       const newState = {
-        ...gameCommands.makeChoice(state, action.payload.toString()),
+        ...gameCommands.selectArtist(state, action.payload as unknown as IArtist),
       };
       local.saveToStorage(newState);
 
-      return newState
+      return newState;
     }
 
     case types.NEXT_ROUND: {
@@ -73,8 +101,25 @@ export const rootReducer = (state: IState = initialState, action: IAction) => {
 
       local.saveToStorage(newState);
 
-      return newState
+      return newState;
+    }
+
+    case types.NEW_ROUND_RES: {
+      const newState = {
+        ...state,
+        ...action.payload,
+        isLoading: false,
+      };
+
+      local.saveToStorage(newState);
+
+      return newState;
+    }
+
+    default: {
+      return state;
     }
   }
-  return state;
 }
+
+export const rootReducer = combineReducers({ gameReducer, artistsReducer })

@@ -2,13 +2,7 @@ import { createServer } from 'http';
 
 import { ExpressApp, normalizePort, onError, onListening } from './Express/';
 import { databaseConnector } from './DB';
-
-import {
-  artistsValidating,
-  getAlbumsOfArtists,
-  updateArtistsOnDB,
-  updateAlbumsOnDB,
-} from './artists/';
+import { launchGameProcessor } from './Game';
 
 Init();
 
@@ -22,14 +16,10 @@ async function Init() {
   server.listen(port);
   server.on('error', onError(port));
   server.on('listening', onListening(server));
-  console.log('stage 1/3 *** server started ***');
+  console.log('stage 1/3 server started');
 
   const dbConnect = await databaseConnector();
   console.log(`stage 2/3 ${dbConnect}`);
 
-  artistsValidating()
-    .then(updateArtistsOnDB)
-    .then(getAlbumsOfArtists)
-    .then(updateAlbumsOnDB)
-    .then(() => console.log('stage 3/3 server available at http://localhost:3007'));
+  launchGameProcessor().then(() => console.log('stage 3/3 server available at http://localhost:3007'));
 }

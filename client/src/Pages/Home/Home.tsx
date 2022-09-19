@@ -15,7 +15,7 @@ export const Home = () => {
   const dispatch = useDispatch();
 
   const onNewGame = () => {
-    dispatch(actions.newGameAction());
+    dispatch(actions.newGameRequestAction());
   }
 
   return (

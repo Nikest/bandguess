@@ -14,13 +14,11 @@ export const Game = () => {
   const tries = useSelector(selectors.getTriesSelector);
   const albumBg = { backgroundImage: `url("${currentAlbum.artworkUrl100}")` };
 
-  const isGuessedArtist = !!guessedArtist;
   const isLastTry = tries === 1;
-
   if (isLoading) {
     return (
       <section className={c('container')}>
-        <p className={c('undefined-name')}>
+        <p className={c('undefined-name center')}>
           Loading...
         </p>
       </section>
@@ -33,12 +31,12 @@ export const Game = () => {
       <Tries />
 
       <div className={c('illustration')}>
-        <div className={c(`img ${(isGuessedArtist || isLastTry) ? 'unblur' : ''}`)} style={albumBg} />
+        <div className={c(`img ${(guessedArtist || isLastTry) ? 'unblur' : ''}`)} style={albumBg} />
       </div>
 
       <div className={c('album-name')}>
-        <p className={c(`undefined-name ${isGuessedArtist ? 'guessed' : ''}`)}>
-          {isGuessedArtist ? guessedArtist : 'Who is artist?'}
+        <p className={c(`undefined-name ${guessedArtist ? 'guessed' : ''}`)}>
+          {guessedArtist?.artistName || 'Who is artist?'}
         </p>
         <p>{currentAlbum.collectionName}</p>
       </div>

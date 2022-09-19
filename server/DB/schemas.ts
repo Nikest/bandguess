@@ -4,6 +4,7 @@ import { IArtist, IAlbum, IPlayer } from '../types';
 const ArtistSchema = new Schema<IArtist>({
   artistName: String,
   artistId: String,
+  number: Number,
 });
 
 const AlbumSchema = new Schema<IAlbum>({

@@ -1,4 +1,7 @@
-export type IArtists = string[];
+export interface IArtist {
+  artistName: string;
+  artistId: number;
+}
 
 export type ICurrentAlbum = {
   artistName: string;
@@ -7,15 +10,19 @@ export type ICurrentAlbum = {
   artworkUrl100: string;
 };
 
-export interface IState {
+export interface IGameState {
   isLoading: boolean;
   playerId: string,
   randomSeed: number,
-  artists: IArtists;
   currentAlbum: ICurrentAlbum;
-  wrongSelected: string[];
+  wrongSelected: number[];
   round: number;
   tries: number;
-  guessedArtist: string;
+  guessedArtist: IArtist | null;
   status: 'inProgress' | 'win' | 'failed';
+}
+
+export interface IArtistsState {
+  artists: IArtist[];
+  isLoading: boolean;
 }

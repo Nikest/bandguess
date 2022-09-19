@@ -1,11 +1,12 @@
-import { IState, IArtists, ICurrentAlbum } from './interfaces';
+import { ICurrentAlbum, IArtist } from './interfaces';
+import { ICombineStore } from './reducers';
 
-export const getStoreSelector = (state: IState): IState => state;
-export const getArtistsSelector = (state: IState): IArtists => state.artists;
-export const getCurrentAlbumSelector = (state: IState): ICurrentAlbum => state.currentAlbum;
-export const getRoundSelector = (state: IState): number => state.round;
-export const getTriesSelector = (state: IState): number => state.tries;
-export const getWrongSelectedSelector = (state: IState): string[] => state.wrongSelected;
-export const getGuessedArtistSelector = (state: IState): string => state.guessedArtist;
-export const getStatusSelector = (state: IState): string => state.status;
-export const isLoadingSelector = (state: IState): boolean => state.isLoading;
+export const getGameStoreSelector = ({ gameReducer }: ICombineStore) => gameReducer;
+export const getArtistsSelector = ({ artistsReducer }: ICombineStore) => artistsReducer.artists;
+export const getCurrentAlbumSelector = ({ gameReducer }: ICombineStore): ICurrentAlbum => gameReducer.currentAlbum;
+export const getRoundSelector = ({ gameReducer }: ICombineStore): number => gameReducer.round;
+export const getTriesSelector = ({ gameReducer }: ICombineStore): number => gameReducer.tries;
+export const getWrongSelectedSelector = ({ gameReducer }: ICombineStore): number[] => gameReducer.wrongSelected;
+export const getGuessedArtistSelector = ({ gameReducer }: ICombineStore): IArtist => gameReducer.guessedArtist;
+export const getStatusSelector = ({ gameReducer }: ICombineStore): string => gameReducer.status;
+export const isLoadingSelector = ({ gameReducer }: ICombineStore): boolean => gameReducer.isLoading;

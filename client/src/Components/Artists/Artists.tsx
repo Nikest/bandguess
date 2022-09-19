@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { IArtist } from '../../Store/Redux/interfaces';
 import * as actions from '../../Store/Redux/Actions/actions';
 import * as selectors from '../../Store/Redux/selectors';
 import { sl } from  '../../utils';
@@ -14,18 +15,18 @@ export const Artists = () => {
 
   const isGuessedArtist = !!guessedArtist;
 
-  const selectArtist = (artist: string) => () => dispatch(actions.selectArtistAction(artist))
+  const selectArtist = (artist: IArtist) => () => dispatch(actions.selectArtistAction(artist));
 
   return (
     <aside className={c('artists-wrap')}>
       {
-        !isGuessedArtist ? artists.map(artist => (
+        !isGuessedArtist ? artists.map((artist) => (
           <p
-            key={artist}
-            className={c(`artist ${wrongSelected.includes(artist) ? 'wrong' : ''}`)}
+            key={artist.artistId}
+            className={c(`artist ${wrongSelected.includes(artist.artistId) ? 'wrong' : ''}`)}
             onClick={selectArtist(artist)}
           >
-            {artist}
+            {artist.artistName}
           </p>
         )) : <p className={c('success-text')}>Congratulations! You guessed!</p>
       }

@@ -1,7 +1,7 @@
 import * as Express from 'express';
 import * as path from 'path';
 
-import { homeRouter, artistsRouter } from './routers/';
+import { homeRouter, artistsRouter, albumRouter } from './routers/';
 
 export class ExpressApp {
   public express: Express.Express;
@@ -18,6 +18,7 @@ export class ExpressApp {
 
     this.express.use('/', homeRouter.router);
     this.express.use('/artists', artistsRouter.router);
+    this.express.use('/album', albumRouter.router);
   }
 
   public set(prop: string, value: number) {
