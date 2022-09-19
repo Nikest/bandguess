@@ -96,11 +96,14 @@ const gameReducer = (state: IGameState = initialGameState, action: IGameAction) 
     }
 
     case types.NEW_GAME_RES: {
-      return {
+      const newState = {
         ...state,
         isLoading: false,
         ...action.payload,
       };
+
+      local.saveToStorage(newState);
+      return newState;
     }
 
     case types.SELECT_ARTIST: {
