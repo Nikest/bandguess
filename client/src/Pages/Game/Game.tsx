@@ -44,7 +44,7 @@ export const Game = () => {
 
       <div className={c('album-name')}>
         <p className={c(`undefined-name ${guessedArtist ? 'guessed' : ''}`)}>
-          {guessedArtist?.artistName || 'Who is artist?'}
+          {guessedArtist?.artistName || 'What artist is this?'}
         </p>
         <p>{currentAlbum.collectionName}</p>
       </div>
