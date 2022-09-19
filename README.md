@@ -14,6 +14,11 @@
 
 ***
 
+### Versions: 
+
+Node js: `16.14.2`
+NPM: `8.5.0`
+
 For automatically install all dependencies and launch the server use command from root directory:
 
 `npm run launch`
