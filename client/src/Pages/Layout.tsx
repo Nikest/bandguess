@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import * as actions from '../Store/Redux/Actions/actions';
-import { Home, Game } from './';
+import { Home, Game, Results } from './';
 import { Button } from '../Components';
 import * as routes from './routes';
 import { sl } from  '../utils';
@@ -16,15 +16,15 @@ export const Layout = () => {
     dispatch(actions.getArtistsAction());
   }, [dispatch]);
 
-  // const onNewGame = () => {
-  //   dispatch(actions.newGameAction());
-  // }
+  const onNewGame = () => {
+    dispatch(actions.newGameRequestAction());
+  }
 
   const header = (
     <>
       <h1 className={c('title')}>Guess the <span className={c('mark')}>Artist</span></h1>
       <div className={c('buttons-wrap')}>
-        <Link to={routes.GAME}><Button small>New Game</Button></Link>
+        <Link to={routes.GAME}><Button small onClick={onNewGame}>New Game</Button></Link>
         <Link to={routes.RESULTS}><Button small>Results</Button></Link>
       </div>
     </>
@@ -47,7 +47,7 @@ export const Layout = () => {
               <Game />
             </Route>
             <Route path={routes.RESULTS}>
-              <div>Table</div>
+              <Results />
             </Route>
           </Switch>
         </main>

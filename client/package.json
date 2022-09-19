@@ -6,7 +6,8 @@
   "scripts": {
     "setup": "echo 'CLIENT INSTALLING: START' && npm install && echo 'CLIENT INSTALLING: SUCCESS'",
     "develop": "webpack-cli serve --mode=development --env development --open --hot",
-    "build": "webpack --mode=production --env production --progress"
+    "build": "webpack --mode=production --env production --progress",
+    "install-build": "npm install && npm run build"
   },
   "repository": {
     "type": "git",

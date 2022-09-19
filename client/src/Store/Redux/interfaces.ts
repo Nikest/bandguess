@@ -1,7 +1,11 @@
+import { IPlayer } from '../../../../server/types';
+
 export interface IArtist {
   artistName: string;
   artistId: number;
 }
+
+export interface IPlayerData extends IPlayer {}
 
 export type ICurrentAlbum = {
   artistName: string;
@@ -25,4 +29,9 @@ export interface IGameState {
 export interface IArtistsState {
   artists: IArtist[];
   isLoading: boolean;
+}
+
+export interface IPlayersStore {
+  isLoading: boolean;
+  players: IPlayerData[];
 }

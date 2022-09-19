@@ -1,9 +1,14 @@
 import { combineReducers } from 'redux';
-import { IGameState, IArtistsState, IArtist } from './interfaces';
+import {
+  IGameState,
+  IArtistsState,
+  IArtist,
+  IPlayerData,
+  IPlayersStore,
+} from './interfaces';
 import * as types from './Actions/types';
 import * as gameCommands from '../../GameProcess';
 import * as local from '../LocalStorage';
-import {NEW_ROUND_RES} from "./Actions/types";
 
 export interface IGameAction {
   type: string;
@@ -15,9 +20,15 @@ export interface IArtistsAction {
   payload?: IArtist[];
 }
 
+export interface IPlayersAction {
+  type: string;
+  payload?: IPlayerData[];
+}
+
 export interface ICombineStore {
   artistsReducer: IArtistsState;
   gameReducer: IGameState;
+  playersReducer: IPlayersStore;
 }
 
 const localData = local.getFromStorage();
@@ -46,6 +57,11 @@ const initialGameState: IGameState = localData ? localData : newGameStoreCreator
 const initialArtistsState: IArtistsState = {
   artists: [],
   isLoading: false,
+}
+
+const initialPlayersStore: IPlayersStore = {
+  isLoading: false,
+  players: [],
 }
 
 const artistsReducer = (state: IArtistsState = initialArtistsState, action: IArtistsAction) => {
@@ -116,10 +132,39 @@ const gameReducer = (state: IGameState = initialGameState, action: IGameAction) 
       return newState;
     }
 
+    case types.GAME_END: {
+      gameCommands.gameEnd(state, action.payload.toString());
+      local.deleteFromStorage();
+      return newGameStoreCreator();
+    }
+
     default: {
       return state;
     }
   }
 }
 
-export const rootReducer = combineReducers({ gameReducer, artistsReducer })
+const playersReducer = (state: IPlayersStore = initialPlayersStore, action: IPlayersAction) => {
+  switch (action.type) {
+    case types.GET_PLAYERS: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+
+    case types.PUT_PLAYERS: {
+      return {
+        ...state,
+        isLoading: false,
+        players: action.payload,
+      };
+    }
+
+    default: {
+      return state;
+    }
+  }
+}
+
+export const rootReducer = combineReducers({ gameReducer, artistsReducer, playersReducer });

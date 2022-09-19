@@ -10,3 +10,5 @@ export const getWrongSelectedSelector = ({ gameReducer }: ICombineStore): number
 export const getGuessedArtistSelector = ({ gameReducer }: ICombineStore): IArtist => gameReducer.guessedArtist;
 export const getStatusSelector = ({ gameReducer }: ICombineStore): string => gameReducer.status;
 export const isLoadingSelector = ({ gameReducer }: ICombineStore): boolean => gameReducer.isLoading;
+export const getPlayersSelector = ({ playersReducer }: ICombineStore) => playersReducer.players;
+export const getIsPlayersLoadingSelector = ({ playersReducer }: ICombineStore) => playersReducer.isLoading;

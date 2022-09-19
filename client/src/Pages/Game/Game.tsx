@@ -1,18 +1,26 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../Store/Redux/selectors';
+import * as actions from '../../Store/Redux/Actions/actions';
 import { Round, Tries, Artists, FinishMsg } from '../../Components';
 import { sl } from  '../../utils';
 
 const c = sl(() => require('./Game.less'));
 
 export const Game = () => {
+  const dispatch = useDispatch();
   const isLoading = useSelector(selectors.isLoadingSelector);
   const currentAlbum = useSelector(selectors.getCurrentAlbumSelector);
   const guessedArtist = useSelector(selectors.getGuessedArtistSelector);
   const status = useSelector(selectors.getStatusSelector);
   const tries = useSelector(selectors.getTriesSelector);
   const albumBg = { backgroundImage: `url("${currentAlbum.artworkUrl100}")` };
+
+  useEffect(() => {
+    if (currentAlbum.artistId == 0 && currentAlbum.artistName === '' && !isLoading) {
+      dispatch(actions.newGameRequestAction());
+    }
+  }, [dispatch, currentAlbum]);
 
   const isLastTry = tries === 1;
   if (isLoading) {

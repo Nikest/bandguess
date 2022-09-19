@@ -1,11 +1,16 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import * as selectors from '../../Store/Redux/selectors';
+import * as actions from '../../Store/Redux/Actions/actions';
+import * as routes from '../../Pages/routes';
 import { sl } from  '../../utils';
 
 const c = sl(() => require('./FinishMsg.less'));
 
 export const FinishMsg = () => {
+  const dispatch = useDispatch();
+  const history = useHistory();
   const round = useSelector(selectors.getRoundSelector);
   const [name, setName] = useState('');
   const input = useRef<HTMLInputElement>();
@@ -16,6 +21,11 @@ export const FinishMsg = () => {
       setName(inputEl.value);
     });
   }, []);
+
+  const onSave = () => {
+    dispatch(actions.gameEndAction(name));
+    history.push(routes.RESULTS);
+  }
 
   return (
     <>
@@ -28,7 +38,13 @@ export const FinishMsg = () => {
           placeholder='Enter your name for saving results'
           className={c('input')}
         />
-        <button className={c('button')} disabled={name.length <= 3}>Save</button>
+        <button
+          className={c('button')}
+          onClick={onSave}
+          disabled={name.length <= 2}
+        >
+          Save
+        </button>
       </div>
     </>
   );

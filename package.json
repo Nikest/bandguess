@@ -2,6 +2,6 @@
   "name": "guesstheartist",
   "version": "1.0.0",
   "scripts": {
-    "launch": "npm --prefix ./client/ run build && npm --prefix ./server/ run server"
+    "launch": "npm --prefix ./client/ run install-build && npm --prefix ./server/ run server-launch"
   }
 }

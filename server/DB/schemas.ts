@@ -18,9 +18,7 @@ const PlayerSchema = new Schema<IPlayer>({
   name: String,
   successfulRounds: Number,
   randomSeed: Number,
-  lastGeneratedSeed: Number,
   playerId: String,
-  isDone: Boolean,
 });
 
 export const ArtistModel = model<IArtist>('artist', ArtistSchema);

@@ -34,7 +34,5 @@ export interface IPlayer {
   name: string;
   successfulRounds: number;
   randomSeed: number;
-  lastGeneratedSeed: number;
   playerId: string;
-  isDone: boolean;
 }

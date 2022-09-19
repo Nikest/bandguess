@@ -1,13 +1,21 @@
 import { takeEvery, put, call } from 'redux-saga/effects';
 import * as actions from '../Redux/Actions/types';
-import { putArtistsAction, newGameResponseAction, newRoundResponseAction } from '../Redux/Actions/actions';
+import {
+  putArtistsAction,
+  newGameResponseAction,
+  newRoundResponseAction,
+  putPlayersAction,
+} from '../Redux/Actions/actions';
 import { generateNewGame } from '../../GameProcess';
 import * as api from '../../API';
 
 function* newGameSaga() {
   const newGameData = generateNewGame();
 
-  const { data } = yield call(api.fetchNewAlbum, newGameData.randomSeed, 0);
+  const { data } = yield call(api.fetchNewAlbum, {
+    randomSeed: newGameData.randomSeed.toString(),
+    round: '0',
+  });
   yield put(newGameResponseAction({
     currentAlbum: data,
     playerId: newGameData.playerId,
@@ -17,7 +25,10 @@ function* newGameSaga() {
 
 function* newRoundSaga(params) {
   const { payload } = params;
-  const { data } = yield call(api.fetchNewAlbum, payload.randomSeed, payload.round);
+  const { data } = yield call(api.fetchNewAlbum, {
+    randomSeed: payload.randomSeed,
+    round: payload.round,
+  });
   yield put(newRoundResponseAction({
     currentAlbum: data,
   }));
@@ -29,8 +40,21 @@ function* getArtistsSaga() {
   yield put(putArtistsAction(data));
 }
 
+function* savePlayerSaga(params) {
+  const { payload } = params;
+
+  yield call(api.fetchSavePlayer, payload);
+}
+
+function* getPlayersSaga() {
+  const { data } = yield call(api.fetchPlayers);
+  yield put(putPlayersAction(data));
+}
+
 export function* rootSaga() {
   yield takeEvery(actions.GET_ARTISTS, getArtistsSaga);
   yield takeEvery(actions.NEW_GAME_REQ, newGameSaga);
   yield takeEvery(actions.NEW_ROUND_REQ, newRoundSaga);
+  yield takeEvery(actions.SAVE_PLAYER, savePlayerSaga);
+  yield takeEvery(actions.GET_PLAYERS, getPlayersSaga);
 }

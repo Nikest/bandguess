@@ -54,8 +54,18 @@ export function nextRound(currentState: IGameState) {
       randomSeed: state.randomSeed,
       round: state.round,
     }));
-  }, 100);
+  }, 0);
 
   return state;
 }
 
+export function gameEnd({ playerId, randomSeed, round }: IGameState, name: string) {
+  setTimeout(() => {
+    store.dispatch(actions.savePlayerAction({
+      name,
+      playerId,
+      randomSeed,
+      successfulRounds: round,
+    }));
+  }, 0);
+}

@@ -18,7 +18,7 @@ export async function fetchITunesAlbumsOfArtist(artistData: IItunesArtistData): 
     term: artistData.artistName.replace(/ /g, '+'),
     attribute: 'artistTerm',
     entity: 'album',
-    limit: '8',
+    limit: '50',
   });
 
   return axios.get(`${iTunesAPIurl}?${urlSearchParams.toString()}`);

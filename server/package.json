@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "server": "tsc index.ts && node index.js"
+    "server": "tsc index.ts && node index.js",
+    "server-launch": "npm install && npm run server"
   },
   "author": "",
   "license": "ISC",
