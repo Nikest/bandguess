@@ -1,35 +1,52 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { HashRouter, Switch, Route, Link } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
-import * as dispatches from '../Store/Redux/dispatches';
+import { useDispatch } from 'react-redux';
+import * as actions from '../Store/Redux/Actions/actions';
+import { Home, Game } from './';
+import { Button } from '../Components';
+import * as routes from './routes';
 import { sl } from  '../utils';
 
 const c = sl(() => require('./Layout.less'));
 
 export const Layout = () => {
   const dispatch = useDispatch();
-  const store = useSelector((a) => a);
-  console.log('store', store);
 
-  const getArtists = () => dispatch(dispatches.getArtistsDispatch())
+  useEffect(() => {
+    dispatch(actions.getArtistsAction());
+  }, [dispatch]);
+
+  // const onNewGame = () => {
+  //   dispatch(actions.newGameAction());
+  // }
+
+  const header = (
+    <>
+      <h1 className={c('title')}>Guess the <span className={c('mark')}>Artist</span></h1>
+      <div className={c('buttons-wrap')}>
+        <Link to={routes.GAME}><Button small>New Game</Button></Link>
+        <Link to={routes.RESULTS}><Button small>Results</Button></Link>
+      </div>
+    </>
+  );
 
   return (
-    <div className={c('test')} onClick={getArtists}>
+    <div className={c('wrapper')}>
       <HashRouter>
         <header className={c('header')}>
-          <h1 className={c('title')}>Guess the Artist</h1>
-          <Link to="/game">Game</Link>
-          <Link to="/table">table</Link>
+          <Route path={routes.GAME}>{ header }</Route>
+          <Route path={routes.RESULTS}>{ header }</Route>
         </header>
-        <main>
+
+        <main className={c('container')}>
           <Switch>
-            <Route exact path='/'>
-              <div>Home</div>
+            <Route exact path={routes.HOME}>
+              <Home />
             </Route>
-            <Route path='/game'>
-              <div>Game</div>
+            <Route path={routes.GAME}>
+              <Game />
             </Route>
-            <Route path='/table'>
+            <Route path={routes.RESULTS}>
               <div>Table</div>
             </Route>
           </Switch>

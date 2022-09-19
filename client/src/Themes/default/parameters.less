@@ -1,17 +1,48 @@
-@transition: 250ms;
+@transition: 150ms;
 
-@colorDecor: #E3FA04;
-@colorMain: #151515;
-@colorMainLigth: #151515;
+@color01: #E3FA04;
+@color02: #151515;
+@color03: #151515;
+@color04: #fff;
+@color05: #d5d5d5;
+@color06: #004c8f;
+@color07: #4f4e4e;
+@color08: #720000;
 
-@bgColorMain: @colorMain;
+@bgColorMain: @color02;
 
-@textColorMain: @colorDecor;
+@titleColorMain: @color01;
+@titleColorMark: @color04;
+
+@textColorMain: @color05;
+@textColorMark: @color01;
+@textColorAdditional: @color07;
+
+@buttonColorMain: @color01;
+@buttonColorAdditional: @color02;
+@buttonColorHover: @color04;
+
+@borderColor: @color05;
+
+@boxBgMain: @color07;
+@boxBgHover: @color01;
+@boxBgError: @color08;
 
 @paddingHeader: 25px;
 
 .titleFont(@fontSize) {
-  font-family: 'Abril Fatface', cursive;
+  font-family: 'Alfa Slab One', cursive;
   font-size: @fontSize;
   text-shadow: 0 0 (@fontSize / 3) #000;
+}
+
+.textFont(@fontSize, @weight) {
+  font-family: 'Montserrat', sans-serif;
+  font-size: @fontSize;
+  font-weight: @weight;
+}
+
+.buttonFont(@fontSize) {
+  font-family: 'Shadows Into Light', cursive;
+  font-size: @fontSize;
 }

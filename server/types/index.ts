@@ -28,3 +28,11 @@ export interface IAlbum extends IItunesAlbumData {}
 
 export interface IArtist extends IItunesArtistData {}
 
+export interface IPlayer {
+  name: string;
+  successfulRounds: number;
+  randomSeed: number;
+  lastGeneratedSeed: number;
+  playerId: string;
+  isDone: boolean;
+}

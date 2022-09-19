@@ -1,4 +1,5 @@
 @import "reset.less";
+@import "global.less";
 
 body {
   background: @bgColorMain;
@@ -10,7 +11,34 @@ body {
 }
 
 .title {
-  color: @textColorMain;
-  .titleFont(67px);
+  color: @titleColorMain;
+  .titleFont(55px);
   margin: 25px 0;
+}
+
+.mark {
+  color: @titleColorMark;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 100%;
+  grid-template-rows: 180px auto;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
+.buttons-wrap {
+  display: flex;
+  justify-content: center;
+
+  & > * {
+    display: inline-block;
+    margin: 0 10px;
+  }
 }

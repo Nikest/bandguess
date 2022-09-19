@@ -1,0 +1,41 @@
+.artists-wrap {
+  grid-column: 1/3;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  padding: 0 100px;
+  grid-column-gap: 25px;
+  grid-row-gap: 25px;
+}
+
+.artist {
+  color: @textColorMain;
+  .textFont(18px, 800);
+  background: @boxBgMain;
+  border-radius: 5px;
+  box-sizing: border-box;
+  height: 50px;
+  padding: 0 0 0 10px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: @transition;
+
+  &.wrong {
+    background: @boxBgError !important;
+    color: @textColorMain !important;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  &:hover {
+    background: @boxBgHover;
+    color: @textColorAdditional;
+  }
+}
+
+.success-text {
+  color: @textColorMain;
+  .textFont(40px, 800);
+  grid-column: 1/6;
+  text-align: center;
+}

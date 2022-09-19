@@ -1,0 +1,32 @@
+.button {
+  align-items: center;
+  background: @buttonColorMain;
+  border: 0;
+  border-radius: 10px;
+  box-sizing: border-box;
+  color: #000;
+  display: flex;
+  justify-content: center;
+  line-height: 1em;
+  max-width: 100%;
+  min-width: 140px;
+  padding: 19px 24px;
+  text-decoration: none !important;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: @transition;
+
+  .buttonFont(40px);
+
+  &:hover {
+    background: @buttonColorHover;
+  }
+
+  &.small {
+    padding: 8px 12px;
+    .buttonFont(20px);
+  }
+}
