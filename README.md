@@ -31,3 +31,9 @@ After `stage 3/3` you can open app on http://localhost:3007/
 4. After each artist selection by the player the application state saves to browser local storage. If the page refreshes all data loads to redux store from browser storage;
 
 ***
+
+### What will be good to realize?
+
+1. Error handling and error alerts messages;
+2. Showing history of each players in results page. Which artist guessed by player
+3. Create .env with settings for artists, album loading limits, etc.
