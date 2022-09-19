@@ -2,11 +2,21 @@
   display: grid;
   grid-template-columns: 50% 50%;
   padding: 25px;
+
+  @media screen and (max-width: 780px) {
+    grid-template-columns: 100%;
+  }
 }
 
 .title {
   .titleFont(90px);
   color: @titleColorMain;
+
+  @media screen and (max-width: 780px) {
+    .titleFont(70px);
+    margin-bottom: 30px;
+    text-align: center;
+  }
 }
 
 .mark {
@@ -15,6 +25,10 @@
 
 .title-wrap {
   padding-left: 80px;
+
+  @media screen and (max-width: @small-screen) {
+    padding: 0;
+  }
 }
 
 .button-wrap {
@@ -24,6 +38,10 @@
   align-items: center;
   align-content: center;
   flex-direction: column;
+
+  @media screen and (max-width: @small-screen) {
+    padding: 0;
+  }
 
   button {
     width: 220px;

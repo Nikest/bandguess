@@ -25,6 +25,10 @@ body {
   display: grid;
   grid-template-columns: 100%;
   grid-template-rows: 180px auto;
+
+  @media screen and (max-width: @small-screen) {
+    grid-template-rows: auto auto;
+  }
 }
 
 .container {

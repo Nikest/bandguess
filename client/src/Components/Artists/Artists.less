@@ -5,6 +5,19 @@
   padding: 0 100px;
   grid-column-gap: 25px;
   grid-row-gap: 25px;
+
+  @media screen and (max-width: @middle-screen) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  @media screen and (max-width: @sub-middle-screen) {
+    padding: 0 50px;
+  }
+
+  @media screen and (max-width: @small-screen) {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 0;
+  }
 }
 
 .artist {

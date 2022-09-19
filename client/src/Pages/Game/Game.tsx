@@ -20,7 +20,7 @@ export const Game = () => {
     if (currentAlbum.artistId == 0 && currentAlbum.artistName === '' && !isLoading) {
       dispatch(actions.newGameRequestAction());
     }
-  }, [dispatch, currentAlbum]);
+  }, [dispatch, currentAlbum, isLoading]);
 
   const isLastTry = tries === 1;
   if (isLoading) {
