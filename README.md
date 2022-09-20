@@ -40,5 +40,5 @@ After `stage 3/3` you can open app on http://localhost:3007/
 ### What will be good to realize?
 
 1. Error handling and error alerts messages;
-3. Create `.env` with settings for artists, album loading limits, etc.;
+3. Create `.env` with settings and admin page for  management of list of artists, album loading limits, etc.;
 4. Getting data to Results page by WebSocket;
